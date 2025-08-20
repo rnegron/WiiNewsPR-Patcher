@@ -1,4 +1,4 @@
-module github.com/rnegron/WiiNewsPR-Patcher
+module github.com/rnegron/wiinewspr-patcher
 
 go 1.25.0
 
