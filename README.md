@@ -24,7 +24,7 @@ After installation, the `wiinewspr-patcher` command should be available.
 ## Requirements
 
 - Go 1.25.0 or higher (no particular reason, just the version I had installed)
-- Wii News Channel WAD file (¯\_(ツ)_/¯):
+- Wii News Channel WAD file (¯\\_(ツ)_/¯):
 ```
 News Channel (USA) (v7) (Channel).wad
 MD5:	7CCB0D36C06BC627ADCE8A0687279940
