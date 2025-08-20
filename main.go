@@ -50,9 +50,6 @@ func patchNewsURL(wadPath string, outputPath string) error {
 		return err
 	}
 
-	// Create container for the updatedContent
-	updatedContent := make([]byte, len(content))
-
 	// 44 bytes
 	originalContent := []byte(OriginalURL)
 
@@ -63,19 +60,19 @@ func patchNewsURL(wadPath string, outputPath string) error {
 	paddedURL := make([]byte, len(originalContent))
 	copy(paddedURL, newContent)
 
-	// Find and replace the URL
+	// Find the offset (index) of the URL inside the bytes
 	offset := bytes.Index(content, originalContent)
 	if offset == -1 {
 		return fmt.Errorf("original URL not found in content")
 	}
 	fmt.Printf("Found original URL at hex offset: 0x%X\n", offset)
 
+	// Patch the URL
+	copy(content[offset:offset+len(originalContent)], paddedURL)
 	// Alternatively:
 	// .... Patch 0x2C (44) bytes at offset 0x1AC37C in the decrypted data
 
-	copy(updatedContent[offset:offset+len(originalContent)], paddedURL)
-
-	err = wad.UpdateContent(1, updatedContent)
+	err = wad.UpdateContent(1, content)
 	if err != nil {
 		return err
 	}
